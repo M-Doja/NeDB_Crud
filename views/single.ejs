@@ -1,0 +1,58 @@
+<% include partials/header %>
+  <div style="margin:5em auto;" class="text-center">
+    <a href="/" type="button" class="btn btn-default"name="button">Back</a>
+
+    <% doc.forEach(d => { %>
+       <li style="list-style:none;">
+         <% if (!d.name) { %>
+           <h3>Name: ** Missing Name **</h3>
+        <% } else { %>
+          <h3>Name: <%= d.name %></h3>
+      <%  }%>
+        <h2><%= d.motto %></h2>
+         <p>ID: <%= d._id %></p>
+       </li>
+      <div  style="margin:5em auto;" class="">
+        <div class="">
+          <a href="#" data-toggle="collapse" data-target="#demo">Edit</a>
+        </div>
+      </div>
+
+       <hr>
+    <% }) %>
+  </div>
+
+
+
+<!-- EDIT DIV -->
+<div id="demo" class="collapse">
+    <h3>Edit A Document</h3>
+
+    <% doc.forEach(docEdited => { %>
+      <div class="formWrap">
+        <form role="form" action="/api/doc/update/<%= docEdited._id %>" method="post">
+
+          <div class="form-group">
+            <label for="name">
+              Your Name
+            </label>
+            <input type="text" class="form-control" name='nameEdit' id="name" value="<%= docEdited.name %>" />
+          </div>
+
+          <div class="form-group">
+            <label for="motto">
+              Your Motto
+            </label>
+            <input type="text" class="form-control"name='mottoEdit' id="motto" value="<%= docEdited.motto %>"/>
+          </div>
+
+          <button type="submit" class="btn btn-default">
+            Save Edit
+          </button>
+        </form>
+      </div>
+      <% }) %>
+
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,16 @@
+body {
+  padding-top:3em;
+  text-align: center;
+  background-color: #333;
+  color: #eee;
+}
+
+.scrollable {
+  border: 2px solid #000;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+ul li {
+  list-style: none;
+}

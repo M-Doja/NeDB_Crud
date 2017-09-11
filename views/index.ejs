@@ -1,0 +1,78 @@
+<% include partials/header %>
+    <h3>NeDB Testing</h3>
+    <div class="container-fluid">
+    	<div class="row">
+
+        <!-- ADD DIV -->
+    		<div class="col-md-6">
+    			<form role="form" action="/api/newdoc" method="POST">
+            <h3>Add A Document</h3>
+    				<div class="form-group">
+    					<label for="name">
+    						Your Name
+    					</label>
+    					<input type="text" class="form-control" name="name" id="name" />
+    				</div>
+    				<div class="form-group">
+    					<label for="motto">
+    						Your Motto
+    					</label>
+    					<input type="text" class="form-control"name="motto" id="motto" />
+    				</div>
+    				<button type="submit" class="btn btn-default">
+    					Add New
+    				</button>
+    			</form>
+
+    		</div>
+
+
+
+        <!-- SHOW DIV -->
+    		<div class="col-md-6 ">
+          <h3>Show All Documents (<%= docs.length %>)</h3>
+          <div class="scrollable">
+              <ul>
+                <% docs.forEach(doc => { %>
+                   <li>
+                     <% if (!doc.name) { %>
+                       <h3><a href="/api/single/<%= doc._id %>">Name: ** Missing Name **</a></h3>
+                    <% } else { %>
+                      <h3><a href="/api/single/<%= doc._id %>">Name: <%= doc.name %></a></h3>
+                  <%  }%>
+                    <h2><%= doc.motto %></h2>
+                     <p>ID: <%= doc._id %></p>
+                   </li>
+                   <form class="" action="/api/doc/remove/<%= doc._id %>" method="post">
+                     <input type="submit" class="btn btn-default"name="<%= doc._id %>" value="Remove">
+                   </form>
+
+                   <hr>
+                 <% }) %>
+              </ul>
+          </div>
+
+
+          <!-- <form role="form" action="/api/doc/remove" method="post">
+            Delete form
+    				<div class="form-group">
+    					<label for="name">
+    						Your Name
+    					</label>
+    					<input type="text" class="form-control" name='name' id="name" />
+    				</div>
+    				<div class="form-group">
+    					<label for="motto">
+    						Your Motto
+    					</label>
+    					<input type="text" class="form-control"name='motto' id="motto" />
+    				</div>
+    				<button type="submit" class="btn btn-default">
+    					Submit
+    				</button>
+    			</form> -->
+    		</div>
+    	</div>
+    </div>
+
+<% include partials/footer %>

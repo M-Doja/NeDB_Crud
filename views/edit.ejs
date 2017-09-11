@@ -1,0 +1,32 @@
+<% include partials/header %>
+  <div style="margin:5em auto;" class="text-center">
+
+    <!-- EDIT DIV -->
+    <div class="">
+      <form role="form" action="/api/addname" method="post">
+        <h3>Edit A Document</h3>
+        <% docs.forEach(doc => { %>
+
+        <div class="form-group">
+          <label for="name">
+            Your Name
+          </label>
+
+          <input type="text" class="form-control" name='name' id="name" value="<%= doc.name %>" />
+        </div>
+        <div class="form-group">
+          <label for="motto">
+            Your Motto
+          </label>
+          <input type="text" class="form-control"name='motto' id="motto" value="<%= doc.motto %>"/>
+        </div>
+        <% }) %>
+
+        <button type="submit" class="btn btn-default">
+          Save Edit
+        </button>
+      </form>
+    </div>
+</div>
+     <% }) %>
+<% include partials/footer %>
